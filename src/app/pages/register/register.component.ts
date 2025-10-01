@@ -28,7 +28,7 @@ export class RegisterComponent {
 
     const newUser = this.form.value;
 
-    // ✅ Load existing users from localStorage (JSON array)
+    //  Load existing users from localStorage 
     let users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
 
     // Check if email already exists

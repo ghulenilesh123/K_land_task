@@ -27,7 +27,7 @@ export class LoginComponent {
 
     const { email, password } = this.loginForm.value;
 
-    // ✅ 1. Try API login
+    //  Try API login
     this.auth.login(email, password).subscribe({
       next: (res) => {
         if (res && res.status === 1 && res.data) {
@@ -41,7 +41,7 @@ export class LoginComponent {
         }
       },
       error: () => {
-        // ✅ 2. If API fails → fallback to local users
+        //  If API fails → fallback to local users
         this.checkLocalUser(email, password);
       }
     });
