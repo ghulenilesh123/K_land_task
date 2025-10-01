@@ -123,7 +123,7 @@ button:hover {
   text-decoration: underline;
 }
 
-/* 📱 Responsive Fix */
+/*  Responsive */
 @media (max-width: 768px) {
   .account-layout {
     flex-direction: column;
