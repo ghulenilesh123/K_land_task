@@ -1,0 +1,29 @@
+<div class="login-container">
+  <div class="login-box">
+    <img [src]="img" alt="K-Land Logo" class="logo fluid-img" />
+
+    <h2>ENTER YOUR EMAIL TO CONTINUE</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <input type="email" formControlName="email" placeholder="Email Address" />
+      <div class="error-message" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        Enter a valid email address
+      </div>
+
+      <input type="password" formControlName="password" placeholder="Password" />
+      <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        Password is required
+      </div>
+
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+
+    <a routerLink="/forgot-password" class="forgot">Forgot password?</a>
+    <p>Don't have an account? <a routerLink="/register">Create Account</a></p>
+
+  </div>
+
+</div>

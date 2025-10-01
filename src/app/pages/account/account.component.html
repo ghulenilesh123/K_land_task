@@ -1,0 +1,70 @@
+<div class="account-wrapper" *ngIf="user">
+  <header class="banner">
+    <h1>MY ACCOUNT</h1>
+    <p>Manage Your Fun: View Tickets, Book Zones, and Track Your Adventure!</p>
+  </header>
+
+  <div class="account-layout">
+    <aside class="sidebar">
+      <ul>
+        <li><a (click)="enableEdit()">Edit Profile</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a (click)="deleteAccount()">Delete Account</a></li>
+        <li><a (click)="logout()">Logout</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <div class="profile-header">
+        <img [src]="user?.image || 'assets/default-avatar.png'" class="avatar" />
+        <input type="file" (change)="onFileSelected($event)" [disabled]="!isEditing" />
+        <div>
+          <h2>{{ user?.firstName }} {{ user?.lastName }}</h2>
+          <p>{{ user?.email }}</p>
+          <p>+{{ user?.phoneCode }} {{ user?.phone }}</p>
+        </div>
+      </div>
+
+      <h3>PERSONAL INFORMATION</h3>
+      <form [formGroup]="form" (ngSubmit)="saveProfile()">
+        <div class="form-row">
+          <input type="text" formControlName="firstName" placeholder="First Name" />
+          <input type="text" formControlName="lastName" placeholder="Last Name" />
+        </div>
+
+        <div class="form-row">
+          <input type="email" formControlName="email" placeholder="Email Address" />
+          <div class="phone-group">
+            <input type="text" formControlName="phoneCode" placeholder="Code" />
+            <input type="text" formControlName="phone" placeholder="Phone Number" />
+          </div>
+        </div>
+
+        <h3>CHANGE PASSWORD</h3>
+        <div class="form-row">
+          <input type="password" formControlName="oldPassword" placeholder="Old Password" />
+          <input type="password" formControlName="newPassword" placeholder="New Password" />
+          <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" />
+        </div>
+
+        <div class="error-message" *ngIf="error">{{ error }}</div>
+        <div class="success-message" *ngIf="message">{{ message }}</div>
+
+        <div *ngIf="isEditing">
+          <button type="submit">Save</button>
+          <button type="button" (click)="disableEdit()">Cancel</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="links">
+      <a href="#">Press</a> | <a href="#">FAQs</a> | <a href="#">Contact us</a> |
+      <a href="#">About us</a> | <a href="#">Join the team</a> | <a href="#">Terms & conditions</a>
+    </div>
+    <p>PRIVACY POLICY | FOLLOW US</p>
+    <p>© 2024 K-Land. All Rights Reserved.</p>
+  </footer>
+</div>
